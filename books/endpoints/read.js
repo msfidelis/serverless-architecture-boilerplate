@@ -26,28 +26,35 @@ module.exports.list = (event, context, callback) => {
 
 module.exports.detail = (event, context, callback) => {
 
-    console.log(event.pathParameters)
-
-    dynamo.scan({
-        hashkey: event.pathParameters.hashkey
-    }, null, DYNAMO_TABLE_BOOKS).then(book => {
-
-        if (!book.Items) {
-            callback(null, {
-                statusCode: 404,
-                body: JSON.stringify({
-                    status: 404,
-                    message: "Not Found"
-                })
-            })
-        } else {
-            callback(null, {
-                statusCode: 200,
-                body: JSON.stringify(book.Items)
-            })
+    let params = {
+        FilterExpression: "#hashkey = :hashkey",
+        ExpressionAttributeNames: {
+            "#hashkey": "hashkey",
+        },
+        ExpressionAttributeValues: {
+            ":hashkey": event.pathParameters.hashkey
         }
-    }).catch(err => {
-        callback(err, JSON.stringify(err));
-    })
+    };
+
+    dynamo.scan(params, null, DYNAMO_TABLE_BOOKS)
+        .then(book => {
+
+            if (book.Items.length === 0) {
+                callback(null, {
+                    statusCode: 404,
+                    body: JSON.stringify({
+                        status: 404,
+                        message: "Not Found"
+                    })
+                })
+            } else {
+                callback(null, {
+                    statusCode: 200,
+                    body: JSON.stringify(book.Items[0])
+                })
+            }
+        }).catch(err => {
+            callback(err, JSON.stringify(err));
+        })
 
 };
