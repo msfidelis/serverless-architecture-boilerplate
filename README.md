@@ -1,6 +1,31 @@
 
 ## Under Construction
 
+## Structure 
+
+```
+├── books (module / context)
+│   ├── endpoints (API Gateway Endpoints)
+│   │   ├── create.js (endpoint)
+│   │   ├── delete.js (endpoint)
+│   │   ├── read.js (endpoint)
+│   │   └── update.js (endpoint)
+│   └── functions (Background Functions)
+│       └── worker (function / context)
+│           └── handler.js (function)
+|
+├── lib (shared libraries)
+│   ├── dynamo.js
+│   ├── kinesis.js
+│   ├── lambda.js
+│   ├── sqs.js
+│   └── uuid.js
+|
+├── node_modules (shared node_modules)
+├── package.json
+└── serverless.yml
+```
+
 ### Deploy full services
 
 ```bash
