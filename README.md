@@ -1,6 +1,29 @@
 
 ## Under Construction
 
+### Deploy full services
+
+```bash
+serverless deploy -v
+```
+
+### Deploy a function 
+
+```bash
+serverless deploy function -f books-consumer
+```
+
+### Get function logs
+
+```bash
+serverless books-consumer -f bananinha -t
+```
+
+### Clean All
+
+```bash
+serverless remove
+```
 
 ## Testing
 
