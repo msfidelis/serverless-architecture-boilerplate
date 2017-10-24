@@ -1,0 +1,57 @@
+'use strict';
+
+const uuid = require('../../lib/uuid');
+const dynamo = require('../../lib/dynamo');
+
+const DYNAMO_TABLE_BOOKS = process.env.DYNAMO_TABLE_BOOKS || 'books';
+
+/**
+ * Register a single Book on SQS 
+ * @param  {[type]}   event    [Event Trigger]
+ * @param  {[type]}   context  [Event Context]
+ * @param  {Function} callback [Callback to resolve]
+ * @return {[type]}            [None]
+ *
+ * This endpoint receibe a simple POST Payload like this:
+ *
+ * {
+ * 		"title" : "American Gods"
+ *      "author" : "Neil Gaiman",
+ *      "price" : 10.00
+ * }
+ *
+ * After receibe a simple payload:
+ *
+ * Register on SQS Queue -> Worker will consume this queue to 
+ * register Book on DynamoDB Table
+ */
+module.exports.create = (event, context, callback) => {
+
+    let body = event.body ? event.body : event;
+    let data = JSON.parse(body);
+
+    let hashkey = uuid();
+
+    let book = {
+        hashkey: hashkey,
+        title: data.title,
+        author: data.author,
+        price: data.price,
+        created: new Date().getTime()
+    };
+
+    dynamo.save(book, DYNAMO_TABLE_BOOKS)
+        .then(success => {
+            callback(null, {
+                statusCode: 201,
+                body: JSON.stringify(book)
+            });
+        })
+        .catch(err => {
+            callback(err, {
+                statusCode: 500,
+                body: JSON.stringify(err)
+            });
+        });
+
+};

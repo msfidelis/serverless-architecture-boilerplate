@@ -1,0 +1,99 @@
+service: serverless-architecture
+
+provider:
+  name: aws
+  runtime: nodejs6.10
+  stage: production
+  region: us-east-1
+  timeout: 10 #Default Lambda timeout 
+  memorySize: 512 #Default Lambda Memory Size
+  versionFunctions: false # No functions versioning 
+  
+  environment: #Global Environment variables
+    DYNAMO_TABLE_BOOKS: 'BooksCatalog'
+    REGION: 'us-east-1'
+
+  iamRoleStatements: # Permissions for all of your functions can be set here
+  - Effect: Allow
+    Action: # Gives permission to DynamoDB tables in a specific region
+      - dynamodb:DescribeTable
+      - dynamodb:Query
+      - dynamodb:Scan
+      - dynamodb:GetItem
+      - dynamodb:PutItem
+      - dynamodb:UpdateItem
+      - dynamodb:DeleteItem
+    Resource: "arn:aws:dynamodb:us-east-1:*:*"
+
+  - Effect: Allow
+    Action: # Gives permission to Lambda execution
+      - lambda:InvokeFunction
+      - lambda:InvokeAsync
+    Resource: "*"
+
+functions:
+
+# API Endpoints
+  books-register:
+    handler: books/crud/create.create
+    memorySize: 128
+    timeout: 60
+    events:
+      - http:
+          path: services/books
+          method: post
+
+  books-list:
+    handler: books/crud/read.list
+    timeout: 60
+    events:
+      - http:
+          path: services/books
+          method: get
+
+  books-detail:
+    handler: books/crud/read.detail
+    timeout: 30
+    events:
+      - http:
+          path: services/books/{hashkey}
+          method: get
+
+  books-update:
+    handler: books/crud/update.update
+    events:
+      - http:
+          path: services/books/{hashkey}
+          method: put
+
+  books-delete:
+    handler: books/crud/delete.delete
+    events:
+      - http:
+          path: services/books/{hashkey}
+          method: delete
+
+# Background Function
+  books-consumer:
+    handler: books/consumer/handler.consumer
+    events:
+      - schedule: 
+        rate: cron(* * * * * *) # Cron Syntax
+        enabled: true # Trigger Enabled
+
+# Infrastrucure - Cloud Formation
+resources:  # CloudFormation template syntax
+  Resources:
+    BooksCatalog:
+      Type: AWS::DynamoDB::Table
+      Properties:
+        TableName: BooksCatalog
+        AttributeDefinitions:
+          - AttributeName: hashkey
+            AttributeType: S
+        KeySchema:
+          - AttributeName: hashkey
+            KeyType: HASH
+        ProvisionedThroughput:
+          ReadCapacityUnits: 2
+          WriteCapacityUnits: 1
