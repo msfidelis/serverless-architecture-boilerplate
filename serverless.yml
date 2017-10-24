@@ -35,7 +35,7 @@ functions:
 
 # API Endpoints
   books-register:
-    handler: books/crud/create.create
+    handler: books/endpoints/create.create
     memorySize: 128
     timeout: 60
     events:
@@ -44,7 +44,7 @@ functions:
           method: post
 
   books-list:
-    handler: books/crud/read.list
+    handler: books/endpoints/read.list
     timeout: 60
     events:
       - http:
@@ -52,7 +52,7 @@ functions:
           method: get
 
   books-detail:
-    handler: books/crud/read.detail
+    handler: books/endpoints/read.detail
     timeout: 30
     events:
       - http:
@@ -60,14 +60,14 @@ functions:
           method: get
 
   books-update:
-    handler: books/crud/update.update
+    handler: books/endpoints/update.update
     events:
       - http:
           path: services/books/{hashkey}
           method: put
 
   books-delete:
-    handler: books/crud/delete.delete
+    handler: books/endpoints/delete.delete
     events:
       - http:
           path: services/books/{hashkey}
@@ -75,7 +75,7 @@ functions:
 
 # Background Function
   books-consumer:
-    handler: books/consumer/handler.consumer
+    handler: books/functions/worker/handler.consumer
     events:
       - schedule: 
         rate: cron(* * * * * *) # Cron Syntax
