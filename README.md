@@ -6,26 +6,26 @@
 ## Structure 
 
 ```
-├── books (module / context)
-│   ├── endpoints (API Gateway Endpoints)
-│   │   ├── create.js (endpoint)
-│   │   ├── delete.js (endpoint)
-│   │   ├── read.js (endpoint)
-│   │   └── update.js (endpoint)
-│   └── functions (Background Functions)
-│       └── worker (function / context)
-│           └── handler.js (function)
-|
-├── lib (shared libraries)
-│   ├── dynamo.js
-│   ├── kinesis.js
-│   ├── lambda.js
-│   ├── sqs.js
-│   └── uuid.js
-|
-├── node_modules (shared node_modules)
+├── README.md
+├── modules (modules folder)
+│   └── books (module / context)
+│       ├── endpoints (API endpoints)
+│       │   ├── create.js
+│       │   ├── delete.js
+│       │   ├── read.js
+│       │   └── update.js
+│       └── functions (workers / background functions)
+│           └── worker
+│               └── handler.js
 ├── package.json
-└── serverless.yml
+├── serverless.yml (serverless config)
+└── shared (shared components)
+    └── lib (shared libraries)
+        ├── dynamo.js
+        ├── kinesis.js
+        ├── lambda.js
+        ├── sqs.js
+        └── uuid.js
 ```
 
 ### Deploy full services

@@ -1,6 +1,6 @@
 'use strict';
 
-const dynamo = require('../../lib/dynamo');
+const dynamo = require('../../../shared/lib/dynamo');
 
 module.exports.update = (event, context, callback) => {
 

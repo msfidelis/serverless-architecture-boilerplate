@@ -1,7 +1,7 @@
 'use strict';
 
-const uuid = require('../../lib/uuid');
-const dynamo = require('../../lib/dynamo');
+const uuid = require('../../../shared/lib/uuid');
+const dynamo = require('../../../shared/lib/dynamo');
 
 const DYNAMO_TABLE_BOOKS = process.env.DYNAMO_TABLE_BOOKS || 'books';
 

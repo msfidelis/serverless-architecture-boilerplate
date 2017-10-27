@@ -1,6 +1,6 @@
 'use strict';
 
-const dynamo = require('../../lib/dynamo');
+const dynamo = require('../../../shared/lib/dynamo');
 
 const DYNAMO_TABLE_BOOKS = process.env.DYNAMO_TABLE_BOOKS || 'books';
 
