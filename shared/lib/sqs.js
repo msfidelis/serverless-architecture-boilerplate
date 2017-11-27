@@ -3,7 +3,7 @@
 const AWS = require("aws-sdk");
 AWS.config.setPromisesDependency(require('bluebird'));
 
-const endpoint = process.env.SQS_URL;
+const endpoint = process.env.SQS_QUEUE_URL;
 const _sqs = new AWS.SQS({
     region: process.env.REGION || 'us-east-1'
 });
@@ -22,6 +22,7 @@ const client = {
      * 
      */
     save: message => {
+
         let params = {
             MessageBody: JSON.stringify(message),
             QueueUrl: endpoint

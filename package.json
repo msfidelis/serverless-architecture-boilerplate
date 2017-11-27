@@ -1,15 +1,16 @@
 {
-  "name": "serverless-architecture-boilerplate",
-  "version": "1.0.0",
-  "description": "",
-  "main": "index.js",
-  "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
-  },
-  "keywords": [],
-  "author": "",
-  "license": "ISC",
-  "dependencies": {
-    "bluebird": "^3.5.1"
-  }
+    "name": "serverless-architecture-boilerplate",
+    "version": "1.0.0",
+    "description": "",
+    "main": "index.js",
+    "scripts": {
+        "test": "echo \"Error: no test specified\" && exit 1"
+    },
+    "keywords": [],
+    "author": "",
+    "license": "ISC",
+    "dependencies": {
+        "bluebird": "^3.5.1",
+        "serverless-pseudo-parameters": "^1.2.5"
+    }
 }

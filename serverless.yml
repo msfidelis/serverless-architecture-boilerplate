@@ -1,4 +1,4 @@
-service: serverless-architecture
+service: serverless-architecture-01
 
 provider:
   name: aws
@@ -11,8 +11,8 @@ provider:
   
   environment: #Global Environment variables
     DYNAMO_TABLE_BOOKS: ${self:custom.dynamo-books} # Reference to Custom Env
+    SQS_QUEUE_URL: 'https://sqs.${self:provider.region}.amazonaws.com/#{AWS::AccountId}/${self:custom.sqs-logs}'
     REGION: ${self:custom.region}
-
 
   iamRoleStatements: # Permissions for all of your functions can be set here
 
@@ -50,10 +50,12 @@ custom:
   sns-logs: ${self:custom.prefix}-trigger-logs
   sqs-logs: ${self:custom.prefix}-messages-logs
 
+plugins:
+  - serverless-pseudo-parameters
 
 functions:
 
-# API Endpoints
+  # API Endpoints
   books-register:
     handler: modules/books/endpoints/create.create
     memorySize: 128
@@ -101,6 +103,7 @@ functions:
         rate: cron(* * * * * *) # Cron Syntax
         enabled: true # Trigger Enabled
 
+
 # Infrastrucure - Cloud Formation
 resources:  # CloudFormation template syntax
 
@@ -121,7 +124,8 @@ resources:  # CloudFormation template syntax
           ReadCapacityUnits: 2
           WriteCapacityUnits: 1
 
-    LogsQueue:
+    # SQS Queue to Update DynamoDB
+    BooksQueueExample:
       Type: AWS::SQS::Queue
       Properties:
         QueueName: ${self:custom.sqs-logs}
