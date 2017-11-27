@@ -97,7 +97,7 @@ functions:
 
 # Background Function
   books-consumer:
-    handler: modules/books/functions/worker/handler.consumer
+    handler: modules/books/functions/worker/handler.worker
     events:
       - schedule: 
         rate: cron(* * * * * *) # Cron Syntax
@@ -108,7 +108,6 @@ functions:
 resources:  # CloudFormation template syntax
 
   Resources:
-
     #DynamoDB Books Table
     BooksCatalog:
       Type: AWS::DynamoDB::Table
