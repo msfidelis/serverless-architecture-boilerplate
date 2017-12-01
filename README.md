@@ -1,7 +1,8 @@
+![Logo](https://d2f9gqwlnfnjcb.cloudfront.net/blog/wp-content/uploads/2016/05/serverless-framework-logo.png)
+
 
 # Serverless Architecture Boilerplate [![serverless](http://public.serverless.com/badges/v3.svg)](http://www.serverless.com) [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT) 
 
-## Under Construction
 
 ## Structure 
 
