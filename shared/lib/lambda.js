@@ -32,7 +32,7 @@ class AWSLambdaAdapter {
     };
 
     invokeAsync(lambdaName, event = {}, callback) {
-        return this.lambda.invoke({
+        return this.lambda.invokeAsync({
             FunctionName: lambdaName,
             Payload: JSON.stringify(event, null, 2)
         }, callback);
