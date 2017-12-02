@@ -30,8 +30,6 @@ module.exports.create = (event, context, callback) => {
 
     let body = event.body ? event.body : event;
 
-    console.log(body);
-
     let data = JSON.parse(body);
 
     let hashkey = uuid();

@@ -80,6 +80,21 @@ const client = {
     },
 
     /**
+     * Update item identified by Key
+     */
+    updateItem: (key, attributes, table = tableDynamo) => {
+        
+        let params = {
+            TableName: table,
+            Key: key,
+            ReturnValues: "ALL_NEW",
+            AttributeUpdates: attributes
+        };
+
+        return dynamoClient.update(params).promise();
+    },
+
+    /**
      * Remove a row from DynamoDB based on Key comparison
      */
     removeRow: (key, table = tableDynamo) => {
@@ -88,34 +103,9 @@ const client = {
             TableName: table,
             Key: key,
             ReturnValues: "ALL_OLD"
-        }
-
-        return dynamoClient.delete(params).promise();
-    },
-    
-    update: (key, expression, values, table = tableDynamo) => {
-
-        let params = {
-            TableName: table,
-            Key: key,
-            UpdateExpression: expression,
-            ExpressionAttributeValues: values,
-            ReturnValues: "UPDATED_NEW"
         };
 
-        return dynamoClient.update(params).promise();
-    },
-
-    updateItem: (key, attributes, table = tableDynamo) => {
-
-        let params = {
-            tableName: table,
-            Key: key,
-            ReturnValues: "UPDATED_NEW",
-            AttributeUpdates: attributes
-        }
-
-        return dynamoClient.updateItem(params).promise();
+        return dynamoClient.delete(params).promise();
     }
 
 }
