@@ -91,6 +91,31 @@ const client = {
         }
 
         return dynamoClient.delete(params).promise();
+    },
+    
+    update: (key, expression, values, table = tableDynamo) => {
+
+        let params = {
+            TableName: table,
+            Key: key,
+            UpdateExpression: expression,
+            ExpressionAttributeValues: values,
+            ReturnValues: "UPDATED_NEW"
+        };
+
+        return dynamoClient.update(params).promise();
+    },
+
+    updateItem: (key, attributes, table = tableDynamo) => {
+
+        let params = {
+            tableName: table,
+            Key: key,
+            ReturnValues: "UPDATED_NEW",
+            AttributeUpdates: attributes
+        }
+
+        return dynamoClient.updateItem(params).promise();
     }
 
 }
