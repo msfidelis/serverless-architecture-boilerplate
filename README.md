@@ -83,5 +83,5 @@ curl -X DELETE https://yur25zhqo0.execute-api.us-east-1.amazonaws.com/production
 Update Book
 
 ```bash
-
+curl -X PUT -d '{"title": "updated modafoca"}' -H "Content-type: application/json" -i https://eusrv4mci5.execute-api.us-east-1.amazonaws.com/production/services/books/bbafdb0c-ee6e-fca0-f224-ed534f5b7766 
 ```
