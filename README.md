@@ -38,13 +38,28 @@ functions:
 
   # API Endpoints
   books-register:
-    handler: modules/books/endpoints/create.create
-    memorySize: 128
-    timeout: 60
+    handler: modules/books/endpoints/create.create #Path to function
+    memorySize: 128 # Lambda Memory Limit
+    timeout: 60 # Lambda Timeout
+    events: 
+      - http: # HTTP Trigger 
+          path: services/books # API Endpoint
+          method: post # HTTP Method
+
+```
+
+### Cloudwatch Events Functions (Cron)
+
+[Lambda Schedule Docs](https://serverless.com/framework/docs/providers/aws/events/schedule/)
+
+```yml
+# Background Function
+  books-consumer:
+    handler: modules/books/functions/worker/handler.worker #Path to function
     events:
-      - http:
-          path: services/books
-          method: post
+      - schedule: #Cloudwatch Event Trigger
+        rate: cron(* * * * * *) # Cron Syntax 
+        enabled: true # Trigger Enabled
 
 ```
 
@@ -140,6 +155,8 @@ custom:
 
 ### IAM Roles
 
+[IAM Docs](https://serverless.com/framework/docs/providers/aws/guide/iam/)
+
 ```yml
   iamRoleStatements: # Permissions for all of your functions can be set here
 
@@ -162,6 +179,8 @@ custom:
 ```
 
 ### Manage Infrastructure Components
+
+[Cloudformation Docs](https://serverless.com/framework/docs/providers/aws/guide/resources/#aws-cloudformation-resource-reference)
 
 ```yml
 # Infrastrucure - Cloud Formation
