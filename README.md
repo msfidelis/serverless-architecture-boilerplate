@@ -74,33 +74,120 @@ serverless remove
 
 ## Testing
 
-Create Book
+**Create Book**
 
 ```bash
 curl -H "Content-Type: application/json" -d '{"title": "American Gods", "author": "Neil Gaiman", "price": 10.00  }' https://yur25zhqo0.execute-api.us-east-1.amazonaws.com/production/services/books -i
 ```
 
-List Books
+**List Books**
 
 
 ```bash
 curl -X GET https://yur25zhqo0.execute-api.us-east-1.amazonaws.com/production/services/books
 ```
 
-Detail Book 
+**Detail Book**
 
 ```bash
 curl -X GET https://yur25zhqo0.execute-api.us-east-1.amazonaws.com/production/services/books/456c9e8f-6c50-d656-dc69-dc828c42af65
 ```
 
-Delete Book 
+**Delete Book** 
 
 ```bash
 curl -X DELETE https://yur25zhqo0.execute-api.us-east-1.amazonaws.com/production/services/books/456c9e8f-6c50-d656-dc69-dc828c42af65 -i 
 ```
 
-Update Book
+**Update Book**
 
 ```bash
 curl -X PUT -d '{"title": "updated modafoca"}' -H "Content-type: application/json" -i https://eusrv4mci5.execute-api.us-east-1.amazonaws.com/production/services/books/bbafdb0c-ee6e-fca0-f224-ed534f5b7766 
+```
+
+## Custom and Environment Variables
+
+### Custom Items
+
+> Creating and Using custom variables to build dynamic name
+
+```yml
+custom:
+  region: ${self:provider.region} 
+  stage: ${opt:stage, self:provider.stage}
+  prefix: ${self:custom.stage}-${self:service}
+  process: ${self:custom.prefix}-process
+  config: ${self:custom.prefix}-config
+  dynamo-books: ${self:custom.prefix}-BooksCatalog
+  sns-logs: ${self:custom.prefix}-trigger-logs 
+  sqs-logs: ${self:custom.prefix}-messages-logs
+```
+
+### Environment Variables
+
+> Building URL Resources using CloudFormation parameters and Custom Variables 
+
+```yml
+  environment: # Global Environment variables
+    DYNAMO_TABLE_BOOKS: ${self:custom.dynamo-books} # Reference to Custom Env
+    SQS_QUEUE_URL: 'https://sqs.${self:provider.region}.amazonaws.com/#{AWS::AccountId}/${self:custom.sqs-logs}'
+    REGION: ${self:custom.region}
+```
+
+
+
+## Manage AWS Cloudformation with Serverless
+
+### IAM Roles
+
+```yml
+  iamRoleStatements: # Permissions for all of your functions can be set here
+
+  - Effect: Allow
+    Action: # Gives permission to DynamoDB tables in a specific region
+      - dynamodb:DescribeTable
+      - dynamodb:Query
+      - dynamodb:Scan
+      - dynamodb:GetItem
+      - dynamodb:PutItem
+      - dynamodb:UpdateItem
+      - dynamodb:DeleteItem
+    Resource: "arn:aws:dynamodb:us-east-1:*:*"
+
+  - Effect: Allow
+    Action: # Gives permission to Lambda execution
+      - lambda:InvokeFunction
+      - lambda:InvokeAsync
+    Resource: "*"
+```
+
+### Manage Infrastructure Components
+
+```yml
+# Infrastrucure - Cloud Formation
+resources:  # CloudFormation template syntax
+
+  Resources:
+    #DynamoDB Books Table
+    BooksCatalog:
+      Type: AWS::DynamoDB::Table # CloudFormation Pseudo Parameter Example
+      Properties:
+        TableName: ${self:custom.dynamo-books}
+        AttributeDefinitions:
+          - AttributeName: hashkey
+            AttributeType: S
+        KeySchema:
+          - AttributeName: hashkey
+            KeyType: HASH
+        ProvisionedThroughput:
+          ReadCapacityUnits: 2
+          WriteCapacityUnits: 1
+
+    # SQS Queue to Update DynamoDB
+    BooksQueueExample:
+      Type: AWS::SQS::Queue
+      Properties:
+        QueueName: ${self:custom.sqs-logs}
+        MessageRetentionPeriod: 1209600
+        VisibilityTimeout: 60
 ```
