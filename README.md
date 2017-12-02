@@ -88,13 +88,6 @@ curl -X PUT -d '{"title": "updated modafoca"}' -H "Content-type: application/jso
 
 ## Custom and Environment Variables
 
-```yml
-
-```
-
-
-## Manage AWS Cloudformation with Serverless
-
 ### Custom Items
 
 > Creating and Using custom variables to build dynamic name
@@ -122,6 +115,9 @@ custom:
     REGION: ${self:custom.region}
 ```
 
+
+
+## Manage AWS Cloudformation with Serverless
 
 ### IAM Roles
 
