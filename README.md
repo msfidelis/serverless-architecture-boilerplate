@@ -29,6 +29,25 @@
         └── uuid.js
 ```
 
+## Functions
+
+### HTTP Trigger Function (API Gateway)
+
+```yml
+functions:
+
+  # API Endpoints
+  books-register:
+    handler: modules/books/endpoints/create.create
+    memorySize: 128
+    timeout: 60
+    events:
+      - http:
+          path: services/books
+          method: post
+
+```
+
 ### Deploy full services
 
 ```bash
