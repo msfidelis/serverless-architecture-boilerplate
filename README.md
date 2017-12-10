@@ -178,9 +178,7 @@ custom:
     Resource: "*"
 ```
 
-### Manage Infrastructure Components
-
-[Cloudformation Docs](https://serverless.com/framework/docs/providers/aws/guide/resources/#aws-cloudformation-resource-reference)
+### Manage Infrastructure Components - [Docs](https://serverless.com/framework/docs/providers/aws/guide/resources/#aws-cloudformation-resource-reference)
 
 ```yml
 # Infrastrucure - Cloud Formation
