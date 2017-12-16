@@ -127,6 +127,9 @@ curl -X DELETE https://yur25zhqo0.execute-api.us-east-1.amazonaws.com/production
 curl -X PUT -d '{"title": "updated modafoca"}' -H "Content-type: application/json" -i https://eusrv4mci5.execute-api.us-east-1.amazonaws.com/production/services/books/bbafdb0c-ee6e-fca0-f224-ed534f5b7766 
 ```
 
+[![asciicast](https://asciinema.org/a/2AbL3Gefn565F2WYJN9f50RlP.png)](https://asciinema.org/a/2AbL3Gefn565F2WYJN9f50RlP)
+
+
 ## Custom and Environment Variables
 
 ### Custom Items
