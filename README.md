@@ -106,6 +106,9 @@ curl -H "Content-Type: application/json" -d '{"title": "American Gods", "author"
 curl -X GET https://yur25zhqo0.execute-api.us-east-1.amazonaws.com/production/services/books
 ```
 
+[![asciicast](https://asciinema.org/a/OAT6cNHhPhfZdgYBSB0sNFN5Q.png)](https://asciinema.org/a/OAT6cNHhPhfZdgYBSB0sNFN5Q)
+
+
 **Detail Book**
 
 ```bash
