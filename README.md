@@ -69,6 +69,10 @@ functions:
 serverless deploy -v
 ```
 
+[![asciicast](https://asciinema.org/a/4mzSihwWksZvjx7KO6mUy3EmO.png)](https://asciinema.org/a/4mzSihwWksZvjx7KO6mUy3EmO)
+
+
+
 ### Deploy a function 
 
 ```bash
