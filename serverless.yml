@@ -8,6 +8,12 @@ provider:
   timeout: 10 #Default Lambda timeout 
   memorySize: 512 #Default Lambda Memory Size
   versionFunctions: false # No functions versioning 
+
+  package:
+    excludeDevDependencies: true
+    exclude:
+      - .git/**
+      - .vscode/**
   
   environment: #Global Environment variables
     DYNAMO_TABLE_BOOKS: ${self:custom.dynamo-books} # Reference to Custom Env
