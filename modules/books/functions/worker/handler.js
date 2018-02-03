@@ -29,9 +29,9 @@ module.exports.worker = (event, context, callback) => {
                     let item = JSON.parse(message.Body);
 
                     //Update item on DynamoDB and remove from Queue
-                    _updateRecord(item.hashkey).then(success => {
-                        sqs.removeFromQueue(message);
-                    }).catch(err => console.log(err));
+                    _updateRecord(item.hashkey)
+                        .then(success => sqs.removeFromQueue)
+                        .catch(err => console.log(err));
 
                 });
             }
