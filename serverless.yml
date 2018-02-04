@@ -106,8 +106,9 @@ functions:
     handler: modules/books/functions/worker/handler.worker
     events:
       - schedule: 
-        rate: cron(* * * * * *) # Cron Syntax
-        enabled: true # Trigger Enabled
+          rate: rate(1 minute) # Rate Syntax
+          # rate: cron(* * ? * * *) # Cron Syntax
+          enabled: true # Trigger Enabled
 
 
 # Infrastrucure - Cloud Formation
