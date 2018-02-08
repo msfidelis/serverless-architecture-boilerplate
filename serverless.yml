@@ -9,6 +9,11 @@ provider:
   memorySize: 512 #Default Lambda Memory Size
   versionFunctions: false # No functions versioning 
   #role: arn:aws:iam::#{AWS::AccountId}:role/existing-role
+  package:
+    excludeDevDependencies: true
+    exclude:
+      - .git/**
+      - .vscode/**
   
   environment: #Global Environment variables
     DYNAMO_TABLE_BOOKS: ${self:custom.dynamo-books} # Reference to Custom Env
@@ -101,8 +106,9 @@ functions:
     handler: modules/books/functions/worker/handler.worker
     events:
       - schedule: 
-        rate: cron(* * * * * *) # Cron Syntax
-        enabled: true # Trigger Enabled
+          rate: rate(1 minute) # Rate Syntax
+          # rate: cron(* * ? * * *) # Cron Syntax
+          enabled: true # Trigger Enabled
 
 
 # Infrastrucure - Cloud Formation

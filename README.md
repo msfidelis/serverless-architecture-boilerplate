@@ -69,6 +69,10 @@ functions:
 serverless deploy -v
 ```
 
+[![asciicast](https://asciinema.org/a/4mzSihwWksZvjx7KO6mUy3EmO.png)](https://asciinema.org/a/4mzSihwWksZvjx7KO6mUy3EmO)
+
+
+
 ### Deploy a function 
 
 ```bash
@@ -102,6 +106,9 @@ curl -H "Content-Type: application/json" -d '{"title": "American Gods", "author"
 curl -X GET https://yur25zhqo0.execute-api.us-east-1.amazonaws.com/production/services/books
 ```
 
+[![asciicast](https://asciinema.org/a/OAT6cNHhPhfZdgYBSB0sNFN5Q.png)](https://asciinema.org/a/OAT6cNHhPhfZdgYBSB0sNFN5Q)
+
+
 **Detail Book**
 
 ```bash
@@ -119,6 +126,9 @@ curl -X DELETE https://yur25zhqo0.execute-api.us-east-1.amazonaws.com/production
 ```bash
 curl -X PUT -d '{"title": "updated modafoca"}' -H "Content-type: application/json" -i https://eusrv4mci5.execute-api.us-east-1.amazonaws.com/production/services/books/bbafdb0c-ee6e-fca0-f224-ed534f5b7766 
 ```
+
+[![asciicast](https://asciinema.org/a/2AbL3Gefn565F2WYJN9f50RlP.png)](https://asciinema.org/a/2AbL3Gefn565F2WYJN9f50RlP)
+
 
 ## Custom and Environment Variables
 

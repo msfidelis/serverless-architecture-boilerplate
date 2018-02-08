@@ -31,6 +31,12 @@ class AWSLambdaAdapter {
         }).promise();
     };
 
+    /**
+     * Invoke Lambda Function Async
+     * @param {*} lambdaName 
+     * @param {*} event 
+     * @param {*} callback 
+     */
     invokeAsync(lambdaName, event = {}, callback) {
         return this.lambda.invokeAsync({
             FunctionName: lambdaName,

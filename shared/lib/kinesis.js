@@ -1,6 +1,7 @@
 'use strict';
 
 const AWS = require('aws-sdk');
+
 const kinesis = new AWS.Kinesis({ region: process.env.REGION || 'sa-east-1' });
 const stream = process.env.KINESIS_STREAM || 'testStream';
 
@@ -17,7 +18,7 @@ const client = {
             data = JSON.stringify(data);
         }
 
-        let record = {
+        const record = {
             Data: data,
             PartitionKey: partition,
             StreamName: stream
