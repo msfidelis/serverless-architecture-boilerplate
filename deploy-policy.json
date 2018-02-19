@@ -72,7 +72,8 @@
                 "sqs:CreateQueue",
                 "lambda:*",
                 "cloudformation:*",
-                "logs:*"
+                "logs:*",
+                "events:*"
             ],
             "Resource": "*"
         }
