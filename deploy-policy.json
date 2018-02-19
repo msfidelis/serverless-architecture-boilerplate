@@ -31,7 +31,7 @@
                 "s3:GetBucketAcl",
                 "s3:ListAllMyBuckets",
                 "s3:GetBucketLocation",
-                "s3:GetObjectVersion"
+                "s3:GetObjectVersion",
                 "dynamodb:DeleteTable",
                 "dynamodb:DescribeTable",
                 "dynamodb:DescribeContinuousBackups",
@@ -50,7 +50,7 @@
                 "dynamodb:UntagResource",
                 "dynamodb:ListStreams",
                 "dynamodb:RestoreTableFromBackup",
-                "dynamodb:DeleteBackup"
+                "dynamodb:DeleteBackup",
                 "apigateway:GET",
                 "apigateway:DELETE",
                 "apigateway:PATCH",
@@ -69,10 +69,10 @@
                 "sqs:ChangeMessageVisibility",
                 "sqs:TagQueue",
                 "sqs:ListDeadLetterSourceQueues",
-                "sqs:CreateQueue"
+                "sqs:CreateQueue",
                 "lambda:*",
                 "cloudformation:*",
-                "logs:*",
+                "logs:*"
             ],
             "Resource": "*"
         }
