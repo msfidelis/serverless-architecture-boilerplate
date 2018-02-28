@@ -4,9 +4,7 @@ const AWS = require("aws-sdk");
 AWS.config.setPromisesDependency(require('bluebird'));
 
 const endpoint = process.env.SQS_QUEUE_URL;
-const _sqs = new AWS.SQS({
-    region: process.env.REGION || 'us-east-1'
-});
+const _sqs = new AWS.SQS({region: process.env.REGION || 'us-east-1'});
 
 /**
  * SQS Abstraction Library
@@ -19,55 +17,58 @@ const _sqs = new AWS.SQS({
 const client = {
 
     /**
-     * 
+     * Save new message into queue
      */
-    save: message => {
+    save: (message, queue=endpoint) => {
 
-        let params = {
+        const params = {
             MessageBody: JSON.stringify(message),
-            QueueUrl: endpoint
+            QueueUrl: queue
         };
 
         return _sqs.sendMessage(params).promise()
     },
     /**
-     * 
+     * Send message to queue
      */
-    sendToQueue: message => {
+    sendToQueue: (message, queue=endpoint) => {
 
-        let params = {
+        const params = {
             MessageBody: JSON.stringify(message),
-            QueueUrl: endpoint
+            QueueUrl: queue
         };
 
         return _sqs.sendMessage(params).promise()
     },
     /**
-     * 
+     * Get messages from Queue
      */
-    consumeQueue: (numberOfMessages = 1) => {
+    consumeQueue: (numberOfMessages = 1, queue=endpoint) => {
 
-        let params = {
-            QueueUrl: endpoint,
+        const params = {
+            QueueUrl: queue,
             MaxNumberOfMessages: numberOfMessages
         };
 
         return _sqs.receiveMessage(params).promise();
     },
     /**
-     * 
+     * Remove message from quue
      */
-    removeFromQueue: message => {
+    removeFromQueue: (message, queue=endpoint) => {
 
-        let params = {
-            QueueUrl: endpoint,
-            ReceiptHandle: message.ReceiptHandle
-        };
+        if (message !== false && message !== undefined) {
 
-        return _sqs.deleteMessage(params).promise();
+            const params = {
+                QueueUrl: queue,
+                ReceiptHandle: message.ReceiptHandle
+            };
+    
+            return _sqs.deleteMessage(params).promise();
+    
+        }
 
     }
-
 }
 
 module.exports = client;
