@@ -17,3 +17,14 @@ module.exports.parseStringToObject = str => {
     }
 
 };
+
+module.exports.parseEvent = event => {
+    
+    try {
+        const body = event.body ? event.body : event;
+        return JSON.parse(body);
+    } catch (error) {
+        return event;
+    }
+
+}
