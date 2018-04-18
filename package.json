@@ -1,21 +1,25 @@
 {
-  "name": "serverless-architecture-boilerplate",
+  "name": "generator-serverless-architecture-boilerplate",
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
-  "keywords": [],
-  "author": "",
-  "license": "ISC",
+  "keywords": [
+    "yeoman-generator",
+    "api",
+    "serverless",
+    "lambda",
+    "AWS"
+  ],
+  "author": "Matheus Fidelis",
+  "license": "MIT",
   "dependencies": {
     "bluebird": "^3.5.1",
     "serverless-pseudo-parameters": "^1.2.5"
   },
   "devDependencies": {
-    "aws-sdk": "^2.175.0",
-    "chai": "^4.1.2",
-    "mocha": "^4.0.1"
+    "aws-sdk": "^2.175.0"
   }
 }
