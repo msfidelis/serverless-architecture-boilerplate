@@ -2,7 +2,7 @@ service: serverless-architecture-01
 
 provider:
   name: aws
-  runtime: nodejs6.10
+  runtime: nodejs8.10
   stage: prod
   region: us-east-1
   timeout: 10 #Default Lambda timeout 
