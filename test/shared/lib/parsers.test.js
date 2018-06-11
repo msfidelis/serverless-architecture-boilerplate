@@ -3,7 +3,26 @@ const assert = require("chai").assert;
 
 const parser = require('../../../shared/lib/parsers');
 
-describe("#parsers library", () => {
+describe("#parsers library signature", () => {
+
+    it("#Have parseStringToObject() method", () => {
+        expect(parser).to.be.an('object').and.include.all.keys('parseStringToObject');
+        expect(parser.parseStringToObject).to.be.an('function');
+    });
+
+    it("#Have parseObjectToString() method", () => {
+        expect(parser).to.be.an('object').and.include.all.keys('parseObjectToString');
+        expect(parser.parseObjectToString).to.be.an('function');
+    });
+
+    it("#Have parseEvent() method", () => {
+        expect(parser).to.be.an('object').and.include.all.keys('parseEvent');
+        expect(parser.parseEvent).to.be.an('function');
+    });
+
+});
+
+describe("#parsers library functions", () => {
 
     it("#Parse string to object with success", () => {
         const original = {
