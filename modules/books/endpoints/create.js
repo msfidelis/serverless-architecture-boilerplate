@@ -28,13 +28,12 @@ const DYNAMO_TABLE_BOOKS = process.env.DYNAMO_TABLE_BOOKS || 'books';
  */
 module.exports.create = (event, context, callback) => {
 
-    let body = event.body ? event.body : event;
+    const body = event.body ? event.body : event;
+    const data = JSON.parse(body);
 
-    let data = JSON.parse(body);
+    const hashkey = uuid();
 
-    let hashkey = uuid();
-
-    let book = {
+    const book = {
         hashkey: hashkey,
         title: data.title,
         author: data.author,

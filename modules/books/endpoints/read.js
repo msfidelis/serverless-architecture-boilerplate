@@ -26,7 +26,7 @@ module.exports.list = (event, context, callback) => {
 
 module.exports.detail = (event, context, callback) => {
 
-    let params = {
+    const params = {
         FilterExpression: "#hashkey = :hashkey",
         ExpressionAttributeNames: {
             "#hashkey": "hashkey",
@@ -53,8 +53,6 @@ module.exports.detail = (event, context, callback) => {
                     body: JSON.stringify(book.Items[0])
                 })
             }
-        }).catch(err => {
-            callback(err, JSON.stringify(err));
-        })
+        }).catch(err => callback(err, JSON.stringify(err)));
 
 };

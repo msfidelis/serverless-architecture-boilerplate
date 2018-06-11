@@ -17,14 +17,14 @@ const DYNAMO_TABLE_BOOKS = process.env.DYNAMO_TABLE_BOOKS || 'books';
  */
 module.exports.update = (event, context, callback) => {
     
-    let body = event.body ? event.body : event;
-    let data = JSON.parse(body);
+    const body = event.body ? event.body : event;
+    const data = JSON.parse(body);
     
-    let key = {
+    const key = {
         hashkey: event.pathParameters.hashkey
     };
     
-    let params = {};
+    const params = {};
     
     if (data.title) {
       params.title = {

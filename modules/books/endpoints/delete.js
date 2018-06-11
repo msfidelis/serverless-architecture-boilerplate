@@ -6,7 +6,7 @@ const DYNAMO_TABLE_BOOKS = process.env.DYNAMO_TABLE_BOOKS || 'books';
 
 module.exports.delete = (event, context, callback) => {
 
-    let key = {
+    const key = {
         hashkey: event.pathParameters.hashkey
     };
 
