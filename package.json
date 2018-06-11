@@ -17,9 +17,11 @@
   "license": "MIT",
   "dependencies": {
     "bluebird": "^3.5.1",
-    "serverless-pseudo-parameters": "^1.2.5"
+    "serverless-pseudo-parameters": "^1.6.0"
   },
   "devDependencies": {
-    "aws-sdk": "^2.175.0"
+    "aws-sdk": "^2.254.1",
+    "chai": "^4.1.2",
+    "mocha": "^5.2.0"
   }
 }
