@@ -1,7 +1,7 @@
 const expect = require("chai").expect;
 const assert = require("chai").assert;
 
-const uuid = require('../../../shared/lib/uuid');
+const uuid = require('../../../../shared/lib/uuid');
 
 describe("#uuid library", () => {
 

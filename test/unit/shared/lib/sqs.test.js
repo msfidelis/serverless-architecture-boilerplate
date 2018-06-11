@@ -1,7 +1,7 @@
 const expect = require("chai").expect;
 const assert = require("chai").assert;
 
-const sqs = require('../../../shared/lib/sqs');
+const sqs = require('../../../../shared/lib/sqs');
 
 describe("#sqs library signature", () => {
 

@@ -1,7 +1,7 @@
 const expect = require("chai").expect;
 const assert = require("chai").assert;
 
-const kinesis = require('../../../shared/lib/kinesis');
+const kinesis = require('../../../../shared/lib/kinesis');
 
 describe("#kinesis library signature", () => {
 

@@ -1,7 +1,7 @@
 const expect = require("chai").expect;
 const assert = require("chai").assert;
 
-const dynamo = require('../../../shared/lib/dynamo');
+const dynamo = require('../../../../shared/lib/dynamo');
 
 describe("#dynamodb library signature", () => {
 
