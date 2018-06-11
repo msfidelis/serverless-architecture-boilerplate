@@ -7,7 +7,7 @@
 ## Structure 
 
 ```
-├── README.md
+.
 ├── modules (modules folder)
 │   └── books (module / context)
 │       ├── endpoints (API endpoints)
@@ -20,13 +20,25 @@
 │               └── handler.js
 ├── package.json
 ├── serverless.yml (serverless config)
-└── shared (shared components)
-    └── lib (shared libraries)
-        ├── dynamo.js
-        ├── kinesis.js
-        ├── lambda.js
-        ├── sqs.js
-        └── uuid.js
+├── shared (shared components)
+│   └── lib (shared libraries)
+│       ├── dynamo.js
+│       ├── kinesis.js
+│       ├── lambda.js
+│       ├── parsers.js
+│       ├── sqs.js
+│       └── uuid.js
+└── test (tests folder)
+    └── unit (unit tests folder)
+        ├── modules (unit tests for modules)
+        │   └── books
+        └── shared (unit tests for shared components)
+            └── lib (unit tests for libraries)
+                ├── dynamo.test.js
+                ├── kinesis.test.js
+                ├── parsers.test.js
+                ├── sqs.test.js
+                └── uuid.test.js
 ```
 
 ## Functions
