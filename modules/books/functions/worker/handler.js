@@ -46,12 +46,9 @@ module.exports.worker = (event, context, callback) => {
  * Update flag on DynamoDB Item
  * @param {*} hashkey 
  */
-function _updateRecord(hashkey) {
+const _updateRecord = hashkey => {
 
-    const key = {
-        hashkey: hashkey
-    };
-
+    const key = { hashkey: hashkey };
     const expression = "set updated_by_worker = :flag";
 
     const values = {
