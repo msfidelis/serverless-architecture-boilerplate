@@ -26,7 +26,7 @@ module.exports.worker = (event, context, callback) => {
             } else {
                 poll.Messages.forEach(message => {
 
-                    let item = JSON.parse(message.Body);
+                    const item = JSON.parse(message.Body);
 
                     //Update item on DynamoDB and remove from Queue
                     _updateRecord(item.hashkey)
@@ -48,13 +48,13 @@ module.exports.worker = (event, context, callback) => {
  */
 function _updateRecord(hashkey) {
 
-    let key = {
+    const key = {
         hashkey: hashkey
     };
 
-    let expression = "set updated_by_worker = :flag";
+    const expression = "set updated_by_worker = :flag";
 
-    let values = {
+    const values = {
         ":flag": 1
     };
 
