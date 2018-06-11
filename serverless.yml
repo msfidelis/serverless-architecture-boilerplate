@@ -14,6 +14,7 @@ provider:
     exclude:
       - .git/**
       - .vscode/**
+      - .test/**
   
   environment: #Global Environment variables
     DYNAMO_TABLE_BOOKS: ${self:custom.dynamo-books} # Reference to Custom Env
