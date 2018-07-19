@@ -26,7 +26,7 @@ const client = {
             QueueUrl: queue
         };
 
-        return _sqs.sendMessage(params).promise()
+        return _sqs.sendMessage(params).promise();
     },
     /**
      * Send message to queue
@@ -38,7 +38,7 @@ const client = {
             QueueUrl: queue
         };
 
-        return _sqs.sendMessage(params).promise()
+        return _sqs.sendMessage(params).promise();
     },
     /**
      * Get messages from Queue
