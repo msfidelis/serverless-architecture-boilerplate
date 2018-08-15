@@ -108,14 +108,18 @@ serverless remove
 **Create Book**
 
 ```bash
-curl -H "Content-Type: application/json" -d '{"title": "American Gods", "author": "Neil Gaiman", "price": 10.00  }' https://yur25zhqo0.execute-api.us-east-1.amazonaws.com/production/services/books -i
+curl -X POST \
+    -H "Content-Type: application/json" \
+    -d '{"title": "American Gods", "author": "Neil Gaiman", "price": 10.00  }' \
+    https://yur25zhqo0.execute-api.us-east-1.amazonaws.com/production/services/books -i
 ```
 
 **List Books**
 
 
 ```bash
-curl -X GET https://yur25zhqo0.execute-api.us-east-1.amazonaws.com/production/services/books
+curl -X GET \
+    https://yur25zhqo0.execute-api.us-east-1.amazonaws.com/production/services/books
 ```
 
 [![asciicast](https://asciinema.org/a/OAT6cNHhPhfZdgYBSB0sNFN5Q.png)](https://asciinema.org/a/OAT6cNHhPhfZdgYBSB0sNFN5Q)
@@ -124,19 +128,23 @@ curl -X GET https://yur25zhqo0.execute-api.us-east-1.amazonaws.com/production/se
 **Detail Book**
 
 ```bash
-curl -X GET https://yur25zhqo0.execute-api.us-east-1.amazonaws.com/production/services/books/456c9e8f-6c50-d656-dc69-dc828c42af65
+curl -X GET \
+    https://yur25zhqo0.execute-api.us-east-1.amazonaws.com/production/services/books/456c9e8f-6c50-d656-dc69-dc828c42af65
 ```
 
 **Delete Book** 
 
 ```bash
-curl -X DELETE https://yur25zhqo0.execute-api.us-east-1.amazonaws.com/production/services/books/456c9e8f-6c50-d656-dc69-dc828c42af65 -i 
+curl -X DELETE \
+    https://yur25zhqo0.execute-api.us-east-1.amazonaws.com/production/services/books/456c9e8f-6c50-d656-dc69-dc828c42af65 -i 
 ```
 
 **Update Book**
 
 ```bash
-curl -X PUT -d '{"title": "updated modafoca"}' -H "Content-type: application/json" -i https://eusrv4mci5.execute-api.us-east-1.amazonaws.com/production/services/books/bbafdb0c-ee6e-fca0-f224-ed534f5b7766 
+curl -X PUT \
+    -d '{"title": "updated modafoca"}' -H "Content-type: application/json" \
+    https://eusrv4mci5.execute-api.us-east-1.amazonaws.com/production/services/books/bbafdb0c-ee6e-fca0-f224-ed534f5b7766 -i
 ```
 
 [![asciicast](https://asciinema.org/a/2AbL3Gefn565F2WYJN9f50RlP.png)](https://asciinema.org/a/2AbL3Gefn565F2WYJN9f50RlP)
