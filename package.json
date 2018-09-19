@@ -4,7 +4,9 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "mocha --recursive"
+    "dev": "serverless offline start --stage dev",
+    "unit-test": "mocha --recursive test/unit/",
+    "integration-test": "mocha --recursive test/integration/"
   },
   "keywords": [
     "yeoman-generator",
@@ -22,6 +24,8 @@
   "devDependencies": {
     "aws-sdk": "^2.254.1",
     "chai": "^4.1.2",
-    "mocha": "^5.2.0"
+    "mocha": "^5.2.0",
+    "serverless-dynamodb-local": "^0.2.35",
+    "serverless-offline": "^3.25.12"
   }
 }

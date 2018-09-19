@@ -3,7 +3,7 @@ service: serverless-architecture-01
 provider:
   name: aws
   runtime: nodejs8.10
-  stage: prod
+  stage: ${opt:stage, 'prod'}
   region: us-east-1
   timeout: 10 #Default Lambda timeout 
   memorySize: 512 #Default Lambda Memory Size
@@ -17,9 +17,10 @@ provider:
       - .test/**
   
   environment: #Global Environment variables
-    DYNAMO_TABLE_BOOKS: ${self:custom.dynamo-books} # Reference to Custom Env
-    SQS_QUEUE_URL: 'https://sqs.${self:provider.region}.amazonaws.com/#{AWS::AccountId}/${self:custom.sqs-logs}'
-    REGION: ${self:custom.region}
+      ${file(./configs/${self:provider.stage}.yml)}
+    # DYNAMO_TABLE_BOOKS: ${self:custom.dynamo-books} # Reference to Custom Env
+    # SQS_QUEUE_URL: 'https://sqs.${self:provider.region}.amazonaws.com/#{AWS::AccountId}/${self:custom.sqs-logs}'
+    # REGION: ${self:custom.region}
 
   iamRoleStatements: # Permissions for all of your functions can be set here
 
@@ -59,6 +60,7 @@ custom:
 
 plugins:
   - serverless-pseudo-parameters
+  - serverless-offline
 
 functions:
 
@@ -110,6 +112,14 @@ functions:
           rate: rate(1 minute) # Rate Syntax
           # rate: cron(* * ? * * *) # Cron Syntax
           enabled: true # Trigger Enabled
+
+  envs-temp:
+    handler: modules/books/endpoints/read.envs
+    timeout: 60
+    events:
+      - http:
+          path: services/envs
+          method: get          
 
 
 # Infrastrucure - Cloud Formation
