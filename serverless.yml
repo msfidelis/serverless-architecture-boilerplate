@@ -1,4 +1,4 @@
-service: serverless-architecture-01
+service: serverless-architecture
 
 provider:
   name: aws
