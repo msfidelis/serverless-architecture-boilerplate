@@ -2,3 +2,4 @@ node_modules
 .vscode
 .serverless
 .terraform
+.terraform
