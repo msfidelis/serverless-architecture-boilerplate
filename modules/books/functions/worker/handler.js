@@ -30,7 +30,7 @@ module.exports.worker = (event, context, callback) => {
 
                     //Update item on DynamoDB and remove from Queue
                     _updateRecord(item.hashkey)
-                        .then(success => sqs.removeFromQueue)
+                        .then(success => sqs.removeFromQueue(message))
                         .catch(err => console.log(err));
 
                 });
