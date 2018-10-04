@@ -1,6 +1,7 @@
 'use strict';
 
 const dynamo = require('../../../shared/lib/dynamo');
+const sqs    = require('../../../shared/lib/sqs');
 
 const DYNAMO_TABLE_BOOKS = process.env.DYNAMO_TABLE_BOOKS || 'books';
 
@@ -58,6 +59,13 @@ module.exports.detail = (event, context, callback) => {
 };
 
 module.exports.envs = (event, context, callback) => {
+
+    // setInterval(() => {
+    //     sqs.consumeQueue(1)
+    //         .then(poll => {
+    //             console.log(poll);
+    //         });
+    // });
 
     callback(null, {
         statusCode: 200,

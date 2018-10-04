@@ -19,6 +19,7 @@
   "license": "MIT",
   "dependencies": {
     "bluebird": "^3.5.1",
+    "serverless-offline-sqs": "^1.4.0",
     "serverless-pseudo-parameters": "^1.6.0"
   },
   "devDependencies": {

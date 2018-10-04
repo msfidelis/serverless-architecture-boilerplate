@@ -58,8 +58,17 @@ custom:
   sns-logs: ${self:custom.prefix}-trigger-logs
   sqs-logs: ${self:custom.prefix}-messages-logs
 
+  # Dev
+  serverless-offline-sqs:
+    apiVersion: '2012-11-05'
+    endpoint: http://0.0.0.0:9324
+    region: eu-west-1
+    accessKeyId: root
+    secretAccessKey: root
+
 plugins:
   - serverless-pseudo-parameters
+  - serverless-offline-sqs
   - serverless-offline
 
 functions:

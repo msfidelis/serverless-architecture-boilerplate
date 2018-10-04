@@ -3,7 +3,8 @@
 const AWS = require("aws-sdk");
 AWS.config.setPromisesDependency(require('bluebird'));
 
-const endpoint = process.env.SQS_QUEUE_URL;
+//const endpoint = process.env.SQS_QUEUE_URL;
+const endpoint = (process.env.ENV === 'dev') ? 'localhost:9324' : '';
 const _sqs = new AWS.SQS({region: process.env.REGION || 'us-east-1'});
 
 /**
@@ -19,11 +20,11 @@ const client = {
     /**
      * Save new message into queue
      */
-    save: (message, queue=endpoint) => {
+    save: (message, queue) => {
 
         const params = {
             MessageBody: JSON.stringify(message),
-            QueueUrl: queue
+            QueueUrl: `${endpoint}/${queue}`
         };
 
         return _sqs.sendMessage(params).promise();
@@ -35,7 +36,7 @@ const client = {
 
         const params = {
             MessageBody: JSON.stringify(message),
-            QueueUrl: queue
+            QueueUrl: `${endpoint}/${queue}`
         };
 
         return _sqs.sendMessage(params).promise();
@@ -46,7 +47,7 @@ const client = {
     consumeQueue: (numberOfMessages = 1, queue=endpoint) => {
 
         const params = {
-            QueueUrl: queue,
+            QueueUrl: `${endpoint}/${queue}`,
             MaxNumberOfMessages: numberOfMessages
         };
 
@@ -60,7 +61,7 @@ const client = {
         if (message !== false && message !== undefined) {
 
             const params = {
-                QueueUrl: queue,
+                QueueUrl: `${endpoint}/${queue}`,
                 ReceiptHandle: message.ReceiptHandle
             };
     
