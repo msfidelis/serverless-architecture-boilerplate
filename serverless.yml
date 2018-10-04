@@ -1,4 +1,4 @@
-service: serverless-architecture-01
+service: serverless-boilerplate
 
 provider:
   name: aws
@@ -77,7 +77,7 @@ functions:
   books-register:
     handler: modules/books/endpoints/create.create
     memorySize: 128
-    timeout: 60
+    timeout: 30
     events:
       - http:
           path: services/books
@@ -85,7 +85,7 @@ functions:
 
   books-list:
     handler: modules/books/endpoints/read.list
-    timeout: 60
+    timeout: 30
     events:
       - http:
           path: services/books
@@ -101,6 +101,7 @@ functions:
 
   books-update:
     handler: modules/books/endpoints/update.update
+    timeout: 30
     events:
       - http:
           path: services/books/{hashkey}
@@ -108,6 +109,7 @@ functions:
 
   books-delete:
     handler: modules/books/endpoints/delete.delete
+    timeout: 30
     events:
       - http:
           path: services/books/{hashkey}
@@ -116,6 +118,7 @@ functions:
 # Background Function
   books-consumer:
     handler: modules/books/functions/worker/handler.worker
+    timeout: 60
     events:
       - schedule: 
           rate: rate(1 minute) # Rate Syntax
