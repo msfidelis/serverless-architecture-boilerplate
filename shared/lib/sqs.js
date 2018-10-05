@@ -3,9 +3,24 @@
 const AWS = require("aws-sdk");
 AWS.config.setPromisesDependency(require('bluebird'));
 
-//const endpoint = process.env.SQS_QUEUE_URL;
-const endpoint = (process.env.ENV === 'dev') ? 'localhost:9324' : '';
-const _sqs = new AWS.SQS({region: process.env.REGION || 'us-east-1'});
+const endpoint = process.env.SQS_QUEUE_URL;
+
+const local = "http://localhost:9324";
+
+const dev = {
+    apiVersion: '2012-11-05', 
+    region: "none",
+    endpoint: "http://localhost:9324",
+    sslEnabled: false,
+};
+
+const prod = {
+    region: process.env.REGION || 'us-east-1'
+}
+
+const options  = (process.env.ENV === 'dev') ? dev : prod
+
+const _sqs = new AWS.SQS(options);
 
 /**
  * SQS Abstraction Library
@@ -20,11 +35,13 @@ const client = {
     /**
      * Save new message into queue
      */
-    save: (message, queue) => {
+    save: (message, queue=endpoint) => {
+
+        const url = (process.env.ENV === "dev") ? `${local}/queue/${queue}` : queue;
 
         const params = {
-            MessageBody: JSON.stringify(message),
-            QueueUrl: `${endpoint}/${queue}`
+            QueueUrl: url,
+            MessageBody: JSON.stringify(message)
         };
 
         return _sqs.sendMessage(params).promise();
@@ -34,9 +51,11 @@ const client = {
      */
     sendToQueue: (message, queue=endpoint) => {
 
+        const url = (process.env.ENV === "dev") ? `${local}/queue/${queue}` : queue;
+
         const params = {
-            MessageBody: JSON.stringify(message),
-            QueueUrl: `${endpoint}/${queue}`
+            QueueUrl: url,
+            MessageBody: JSON.stringify(message)
         };
 
         return _sqs.sendMessage(params).promise();
@@ -46,10 +65,14 @@ const client = {
      */
     consumeQueue: (numberOfMessages = 1, queue=endpoint) => {
 
+        const url = (process.env.ENV === "dev") ? `${local}/queue/${queue}` : queue;
+
         const params = {
-            QueueUrl: `${endpoint}/${queue}`,
+            QueueUrl: url,
             MaxNumberOfMessages: numberOfMessages
         };
+
+        console.log(params);
 
         return _sqs.receiveMessage(params).promise();
     },
@@ -60,8 +83,10 @@ const client = {
 
         if (message !== false && message !== undefined) {
 
+            const url = (process.env.ENV === "dev") ? `${local}/queue/${queue}` : queue;
+
             const params = {
-                QueueUrl: `${endpoint}/${queue}`,
+                QueueUrl: url,
                 ReceiptHandle: message.ReceiptHandle
             };
     
