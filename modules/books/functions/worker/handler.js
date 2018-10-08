@@ -4,7 +4,7 @@ const dynamo = require('../../../../shared/lib/dynamo');
 const sqs = require('../../../../shared/lib/sqs');
 
 const DYNAMO_TABLE_BOOKS = process.env.DYNAMO_TABLE_BOOKS || 'books';
-
+const SQS_QUEUE_URL = process.env.SQS_QUEUE_URL || 'book';
 /**
  * This is a Worker example 
  * It's a simple POC to update DynamoDB itens based on hashkey value
@@ -19,22 +19,23 @@ module.exports.worker = (event, context, callback) => {
     //Get records on SQS to update a DynamoDB Table
     setInterval(() => {
 
-        sqs.consumeQueue(1).then(poll => {
+        sqs.consumeQueue(1, SQS_QUEUE_URL)
+            .then(poll => {
 
-            if (!poll.Messages) {
-                return;
-            } else {
-                poll.Messages.forEach(message => {
+                if (!poll.Messages) {
+                    return;
+                } else {
+                    poll.Messages.forEach(message => {
 
-                    const item = JSON.parse(message.Body);
+                        const item = JSON.parse(message.Body);
 
-                    //Update item on DynamoDB and remove from Queue
-                    _updateRecord(item.hashkey)
-                        .then(success => sqs.removeFromQueue(message))
-                        .catch(err => console.log(err));
+                        //Update item on DynamoDB and remove from Queue
+                        _updateRecord(item.hashkey)
+                            .then(success => sqs.removeFromQueue(message))
+                            .catch(err => console.log(err));
 
-                });
-            }
+                    });
+                }
 
         }).catch(err => console.log(err));
 
