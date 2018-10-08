@@ -19,7 +19,6 @@
   "license": "MIT",
   "dependencies": {
     "bluebird": "^3.5.1",
-    "serverless-offline-sqs": "^1.4.0",
     "serverless-pseudo-parameters": "^1.6.0"
   },
   "devDependencies": {
@@ -27,6 +26,7 @@
     "chai": "^4.1.2",
     "mocha": "^5.2.0",
     "serverless-dynamodb-local": "^0.2.35",
+    "serverless-offline-sqs": "^1.4.0",
     "serverless-offline": "^3.25.12"
   }
 }

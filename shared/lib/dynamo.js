@@ -1,6 +1,22 @@
 'use strict';
 
 const AWS = require("aws-sdk");
+
+const dev = {
+    region: 'localhost',
+    endpoint: "http://0.0.0.0:8000",
+    accessKeyId: 'MOCK_ACCESS_KEY_ID',
+    secretAccessKey: 'MOCK_SECRET_ACCESS_KEY',
+    convertEmptyValues: true
+};
+
+const prod = {
+    region: process.env.REGION || 'us-east-1'
+};
+
+const config = process.env.IS_OFFLINE ? dev : prod;
+
+AWS.config.update(config);
 AWS.config.setPromisesDependency(require('bluebird'));
 
 const dynamoClient = new AWS.DynamoDB.DocumentClient();
@@ -24,10 +40,11 @@ const client = {
      */
     save: (item, table = tableDynamo) => {
 
-        let params = {
+        const params = {
             TableName: table,
             Item: item
         };
+
         return dynamoClient.put(params).promise();
     },
 
@@ -36,7 +53,7 @@ const client = {
      */
     find: where => {
 
-        let params = {
+        const params = {
             TableName: tableDynamo,
             Key: where
         };
@@ -68,7 +85,7 @@ const client = {
      */
     update: (key, expression, values, table = tableDynamo) => {
 
-        let params = {
+        const params = {
             TableName: table,
             Key: key,
             UpdateExpression: expression,
@@ -84,7 +101,7 @@ const client = {
      */
     updateItem: (key, attributes, table = tableDynamo) => {
         
-        let params = {
+        const params = {
             TableName: table,
             Key: key,
             ReturnValues: "ALL_NEW",
@@ -99,7 +116,7 @@ const client = {
      */
     removeRow: (key, table = tableDynamo) => {
 
-        let params = {
+        const params = {
             TableName: table,
             Key: key,
             ReturnValues: "ALL_OLD"

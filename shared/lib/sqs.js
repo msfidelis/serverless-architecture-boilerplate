@@ -9,13 +9,14 @@ const local = "http://localhost:9324";
 
 const dev = {
     apiVersion: '2012-11-05', 
-    region: "none",
-    endpoint: "http://localhost:9324",
+    region: process.env.REGION || 'localhost',
+    endpoint: "http://0.0.0.0:9324",
     sslEnabled: false,
 };
 
 const prod = {
-    region: process.env.REGION || 'us-east-1'
+    apiVersion: '2012-11-05', 
+    region: process.env.REGION || 'localhost'
 }
 
 const options  = (process.env.ENV === 'dev') ? dev : prod
@@ -71,8 +72,6 @@ const client = {
             QueueUrl: url,
             MaxNumberOfMessages: numberOfMessages
         };
-
-        console.log(params);
 
         return _sqs.receiveMessage(params).promise();
     },

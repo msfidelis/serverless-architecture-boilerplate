@@ -18,9 +18,6 @@ provider:
   
   environment: #Global Environment variables
       ${file(./configs/${self:provider.stage}.yml)}
-    # DYNAMO_TABLE_BOOKS: ${self:custom.dynamo-books} # Reference to Custom Env
-    # SQS_QUEUE_URL: 'https://sqs.${self:provider.region}.amazonaws.com/#{AWS::AccountId}/${self:custom.sqs-logs}'
-    # REGION: ${self:custom.region}
 
   iamRoleStatements: # Permissions for all of your functions can be set here
 
@@ -62,12 +59,24 @@ custom:
   serverless-offline-sqs:
     apiVersion: '2012-11-05'
     endpoint: http://0.0.0.0:9324
-    region: eu-west-1
+    region: sa-east-1
     accessKeyId: root
     secretAccessKey: root
 
+  dynamodb:
+    stages:
+      - dev
+
+    start:
+      port: 8000
+      inMemory: true
+      migrate: true
+      noStart: true
+
+
 plugins:
   - serverless-pseudo-parameters
+  - serverless-dynamodb-local
   - serverless-offline-sqs
   - serverless-offline
 
