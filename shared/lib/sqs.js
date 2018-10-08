@@ -5,18 +5,18 @@ AWS.config.setPromisesDependency(require('bluebird'));
 
 const endpoint = process.env.SQS_QUEUE_URL;
 
-const local = "http://localhost:9324";
+const local = "http://0.0.0.0:9324";
 
 const dev = {
     apiVersion: '2012-11-05', 
     region: process.env.REGION || 'localhost',
-    endpoint: "http://0.0.0.0:9324",
+    endpoint: local,
     sslEnabled: false,
 };
 
 const prod = {
     apiVersion: '2012-11-05', 
-    region: process.env.REGION || 'localhost'
+    region: process.env.REGION || 'sa-east-1'
 }
 
 const options  = (process.env.ENV === 'dev') ? dev : prod
