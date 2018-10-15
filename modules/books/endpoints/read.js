@@ -58,19 +58,3 @@ module.exports.detail = (event, context, callback) => {
         }).catch(err => callback(err, JSON.stringify(err)));
 
 };
-
-module.exports.envs = (event, context, callback) => {
-
-    // setInterval(() => {
-        sqs.consumeQueue(1, SQS_QUEUE_URL)
-            .then(poll => {
-                console.log(poll);
-            });
-    // });
-
-    callback(null, {
-        statusCode: 200,
-        body: JSON.stringify(process.env)
-    });
-
-};
