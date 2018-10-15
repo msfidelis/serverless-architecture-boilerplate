@@ -28,6 +28,6 @@
     "serverless-dynamodb-local": "^0.2.35",
     "serverless-offline": "^3.25.12",
     "serverless-offline-scheduler": "^0.3.4",
-    "serverless-offline-sqs": "^1.4.0"
+    "serverless-offline-sqs-esmq": "^1.0.0"
   }
 }

@@ -59,7 +59,7 @@ custom:
     host: '0.0.0.0'
 
   # Dev
-  serverless-offline-sqs:
+  serverless-offline-sqs-esmq:
     apiVersion: '2012-11-05'
     endpoint: http://sqs:9324
     region: sa-east-1
@@ -82,7 +82,7 @@ plugins:
   - serverless-pseudo-parameters
   - serverless-dynamodb-local
   - serverless-offline-scheduler
-  - serverless-offline-sqs
+  - serverless-offline-sqs-esmq
   - serverless-offline
 
 functions:
