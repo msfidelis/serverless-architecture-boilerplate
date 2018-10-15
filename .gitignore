@@ -1,5 +1,5 @@
 node_modules
 .vscode
 .serverless
-.terraform
+.tmp
 .terraform

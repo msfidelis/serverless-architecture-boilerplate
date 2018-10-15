@@ -75,6 +75,10 @@ functions:
 
 ```
 
+## Dev Environment
+
+This boilerplate uses `serverless-local` plugin and `localstack` on Docker Project do emulate the AWS Resources
+
 ### Deploy full services
 
 ```bash
