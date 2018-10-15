@@ -75,9 +75,26 @@ functions:
 
 ```
 
-## Dev Environment
+## Development environment 
 
-This boilerplate uses `serverless-local` plugin and `localstack` on Docker Project do emulate the AWS Resources
+This boilerplate uses `serverless-local` plugin and some containers and plugins to emulate the AWS Resources
+
+```bash
+docker-compose up
+```
+The applications will start on `http://localhost:3000`
+
+### Dev Plugins
+
+This boilerplate contains following plugins for local development: 
+
+* [serverless-offline](https://github.com/dherault/serverless-offline/issues) - For run API Gateway local and manage plugins 
+* [serverless-offline-scheduler](https://github.com/ajmath/serverless-offline-scheduler) - CloudWatch Schedule Adapter
+* [serverless-offline-sqs-esmq](https://github.com/msfidelis/serverless-offline-sqs-esmq) - SQS Adapter
+* [serverless-dynamodb-local](https://github.com/99xt/serverless-dynamodb-local/releases) - DynamoDB Adapter
+
+
+## Production environment
 
 ### Deploy full services
 
@@ -86,7 +103,6 @@ serverless deploy -v
 ```
 
 [![asciicast](https://asciinema.org/a/4mzSihwWksZvjx7KO6mUy3EmO.png)](https://asciinema.org/a/4mzSihwWksZvjx7KO6mUy3EmO)
-
 
 
 ### Deploy a function 
