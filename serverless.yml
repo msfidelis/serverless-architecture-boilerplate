@@ -55,10 +55,13 @@ custom:
   sns-logs: ${self:custom.prefix}-trigger-logs
   sqs-logs: ${self:custom.prefix}-messages-logs
 
+  serverless-offline:
+    host: '0.0.0.0'
+
   # Dev
   serverless-offline-sqs:
     apiVersion: '2012-11-05'
-    endpoint: http://0.0.0.0:9324
+    endpoint: http://sqs:9324
     region: sa-east-1
     accessKeyId: root
     secretAccessKey: root
@@ -68,6 +71,7 @@ custom:
       - dev
 
     start:
+      host: "dynamo"
       port: 8000
       inMemory: true
       migrate: true

@@ -5,7 +5,7 @@ AWS.config.setPromisesDependency(require('bluebird'));
 
 const endpoint = process.env.SQS_QUEUE_URL;
 
-const local = "http://0.0.0.0:9324";
+const local = "http://sqs:9324";
 
 const dev = {
     apiVersion: '2012-11-05', 

@@ -4,7 +4,7 @@ const AWS = require("aws-sdk");
 
 const dev = {
     region: 'localhost',
-    endpoint: "http://0.0.0.0:8000",
+    endpoint: "http://dynamo:8000",
     accessKeyId: 'MOCK_ACCESS_KEY_ID',
     secretAccessKey: 'MOCK_SECRET_ACCESS_KEY',
     convertEmptyValues: true
