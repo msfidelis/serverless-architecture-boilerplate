@@ -7,7 +7,7 @@ const sqs = require('../../../shared/lib/sqs');
 const DYNAMO_TABLE_BOOKS = process.env.DYNAMO_TABLE_BOOKS || 'books';
 
 /**
- * Register a single Book on SQS 
+ * Register a single Book on SQS
  * @param  {[type]}   event    [Event Trigger]
  * @param  {[type]}   context  [Event Context]
  * @param  {Function} callback [Callback to resolve]
@@ -23,7 +23,7 @@ const DYNAMO_TABLE_BOOKS = process.env.DYNAMO_TABLE_BOOKS || 'books';
  *
  * After receibe a simple payload:
  *
- * Register on SQS Queue -> Worker will consume this queue to 
+ * Register on SQS Queue -> Worker will consume this queue to
  * register Book on DynamoDB Table
  */
 module.exports.create = (event, context, callback) => {
@@ -43,7 +43,7 @@ module.exports.create = (event, context, callback) => {
     };
 
     /**
-     * Save item on DynamoDB and put Hashkey on SQS Queue to be 
+     * Save item on DynamoDB and put Hashkey on SQS Queue to be
      * updated by example Worker
      */
     Promise.all([
