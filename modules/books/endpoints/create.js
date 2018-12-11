@@ -43,7 +43,7 @@ module.exports.create = (event, context, callback) => {
     };
 
     /**
-     * Save item on DynamoDB and put Hashkey on SQS Queue to be
+     * Save item on DynamoDB and put hashkey on SQS Queue to be
      * updated by example Worker
      */
     Promise.all([

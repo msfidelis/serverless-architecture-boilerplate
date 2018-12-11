@@ -6,9 +6,7 @@ const DYNAMO_TABLE_BOOKS = process.env.DYNAMO_TABLE_BOOKS || 'books';
 
 module.exports.delete = (event, context, callback) => {
 
-    const key = {
-        hashkey: event.pathParameters.hashkey
-    };
+    const key = { hashkey: event.pathParameters.hashkey };
 
     dynamo.removeRow(key, DYNAMO_TABLE_BOOKS)
         .then(success => {
@@ -16,7 +14,7 @@ module.exports.delete = (event, context, callback) => {
             callback(null, {
                 statusCode: 204,
                 body: JSON.stringify(success)
-            })
+            });
 
         }).catch(err => {
 
@@ -25,6 +23,6 @@ module.exports.delete = (event, context, callback) => {
                 body: JSON.stringify(err)
             });
 
-        })
+        });
 
 };
