@@ -12,6 +12,8 @@ const dev = {
     region: process.env.REGION || 'localhost',
     endpoint: local,
     sslEnabled: false,
+    accessKeyId: 'MOCK_ACCESS_KEY_ID',
+    secretAccessKey: 'MOCK_SECRET_ACCESS_KEY',
 };
 
 const prod = {
