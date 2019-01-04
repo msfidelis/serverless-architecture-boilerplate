@@ -21,7 +21,7 @@ module.exports.worker = (event, context, callback) => {
 
         sqs.consumeQueue(1, SQS_QUEUE_URL)
             .then(poll => {
-
+                console.log(poll);
                 if (!poll.Messages) {
                     return;
                 } else {

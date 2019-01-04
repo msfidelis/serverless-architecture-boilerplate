@@ -4,11 +4,15 @@ services:
     image: s12v/elasticmq:latest
     ports:
       - "9324:9324"
+    networks:
+      - cloud
 
   dynamo:
     image: amazon/dynamodb-local:latest
     ports:
       - "8000:8000"
+    networks:
+      - cloud
 
   serverless:
     build: .
@@ -18,4 +22,9 @@ services:
       - "3000:3000"
     depends_on:
       - sqs
-      - mysql
+      - dynamo
+    networks:
+      - cloud
+
+networks:
+  cloud:
