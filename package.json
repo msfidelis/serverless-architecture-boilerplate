@@ -18,16 +18,16 @@
   "author": "Matheus Fidelis",
   "license": "MIT",
   "dependencies": {
-    "bluebird": "^3.5.1",
+    "bluebird": "^3.5.3",
     "serverless-pseudo-parameters": "^1.6.0"
   },
   "devDependencies": {
-    "aws-sdk": "^2.254.1",
-    "chai": "^4.1.2",
+    "aws-sdk": "^2.384.0",
+    "chai": "^4.2.0",
     "mocha": "^5.2.0",
-    "serverless-dynamodb-local": "^0.2.35",
-    "serverless-offline": "^3.25.12",
-    "serverless-offline-scheduler": "^0.3.4",
+    "serverless-dynamodb-local": "^0.2.36",
+    "serverless-offline": "^3.32.1",
+    "serverless-offline-scheduler": "^0.3.5",
     "serverless-offline-sqs-esmq": "^1.0.0"
   }
 }
