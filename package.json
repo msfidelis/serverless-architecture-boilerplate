@@ -26,7 +26,7 @@
     "chai": "^4.2.0",
     "mocha": "^5.2.0",
     "serverless-dynamodb-local": "0.2.30",
-    "serverless-offline": "^3.32.1",
+    "serverless-offline": "^4.4.2",
     "serverless-offline-scheduler": "^0.3.5",
     "serverless-offline-sqs-esmq": "^1.0.0"
   }
