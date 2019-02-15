@@ -1,5 +1,5 @@
 ENV: dev
-MESSAGE: 'arrazo viado'
+MESSAGE: 'loko é poko'
 DYNAMO_TABLE_BOOKS: ${self:custom.dynamo-books} # Reference to Custom Env
-SQS_QUEUE_URL: '${self:custom.sqs-logs}'
-REGION: 'localhost'
+SQS_QUEUE_URL: 'https://sqs.${self:provider.region}.amazonaws.com/#{AWS::AccountId}/${self:custom.sqs-logs}'
+REGION: ${self:custom.region}

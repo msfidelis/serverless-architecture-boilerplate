@@ -21,13 +21,13 @@ const prod = {
     region: process.env.REGION || 'sa-east-1'
 }
 
-const options  = (process.env.ENV === 'dev') ? dev : prod
+const options  = process.env.IS_OFFLINE ? dev : prod
 
 const _sqs = new AWS.SQS(options);
 
 /**
  * SQS Abstraction Library
- * @Author: Matheus 'Raj' Fidelis <raj@superlogica.com>
+ * @Author: Matheus 'Raj' Fidelis <msfidelis01@gmail.com>
  * @save() - Interface Method. - Save Item on SQS Queue;
  * @sendToQueue() - Save Item on SQS Queue;
  * @consumeQueue() - Consume Queue Messages;
@@ -40,7 +40,7 @@ const client = {
      */
     save: (message, queue=endpoint) => {
 
-        const url = (process.env.ENV === "dev") ? `${local}/queue/${queue}` : queue;
+        const url = rocess.env.IS_OFFLINE ? `${local}/queue/${queue}` : queue;
 
         const params = {
             QueueUrl: url,
@@ -54,7 +54,7 @@ const client = {
      */
     sendToQueue: (message, queue=endpoint) => {
 
-        const url = (process.env.ENV === "dev") ? `${local}/queue/${queue}` : queue;
+        const url = process.env.IS_OFFLINE  ? `${local}/queue/${queue}` : queue;
 
         const params = {
             QueueUrl: url,
@@ -67,9 +67,8 @@ const client = {
      * Get messages from Queue
      */
     consumeQueue: (numberOfMessages = 1, queue=endpoint) => {
-
-        const url = (process.env.ENV === "dev") ? `${local}/queue/${queue}` : queue;
-
+        
+        const url = process.env.IS_OFFLINE ? `${local}/queue/${queue}` : queue;
         const params = {
             QueueUrl: url,
             MaxNumberOfMessages: numberOfMessages
@@ -84,7 +83,7 @@ const client = {
 
         if (message !== false && message !== undefined) {
 
-            const url = (process.env.ENV === "dev") ? `${local}/queue/${queue}` : queue;
+            const url = process.env.IS_OFFLINE ? `${local}/queue/${queue}` : queue;
 
             const params = {
                 QueueUrl: url,
