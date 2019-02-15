@@ -10,11 +10,9 @@ const dev = {
     convertEmptyValues: true
 };
 
-const prod = {
-    region: process.env.REGION || 'us-east-1'
-};
+const prod = { region: process.env.REGION || 'us-east-1' };
 
-const config = process.env.IS_OFFLINE ? dev : prod;
+const config = process.env.IS_OFFLINE ? dev : prod
 
 AWS.config.update(config);
 AWS.config.setPromisesDependency(require('bluebird'));

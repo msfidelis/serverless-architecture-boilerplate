@@ -68,12 +68,13 @@ custom:
 
   dynamodb:
     stages:
-      - dev
+      - local
+      - test
 
     start:
       host: "dynamo"
       port: 8000
-      inMemory: true
+      inMemory: false
       migrate: true
       noStart: true
 

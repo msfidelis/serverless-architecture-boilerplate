@@ -5,14 +5,14 @@ services:
     ports:
       - "9324:9324"
     networks:
-      - cloud
+      - developer
 
   dynamo:
     image: amazon/dynamodb-local:latest
     ports:
       - "8000:8000"
     networks:
-      - cloud
+      - developer
 
   serverless:
     build: .
@@ -24,7 +24,7 @@ services:
       - sqs
       - dynamo
     networks:
-      - cloud
+      - developer
 
 networks:
-  cloud:
+  developer:
