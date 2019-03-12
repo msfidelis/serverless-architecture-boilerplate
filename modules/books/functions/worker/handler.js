@@ -5,6 +5,9 @@ const sqs = require('../../../../shared/lib/sqs');
 
 const DYNAMO_TABLE_BOOKS = process.env.DYNAMO_TABLE_BOOKS || 'books';
 const SQS_QUEUE_URL = process.env.SQS_QUEUE_URL || 'book';
+
+let lastIntervalID;
+
 /**
  * This is a Worker example 
  * It's a simple POC to update DynamoDB itens based on hashkey value
@@ -15,9 +18,12 @@ const SQS_QUEUE_URL = process.env.SQS_QUEUE_URL || 'book';
  */
 module.exports.worker = (event, context, callback) => {
 
-
+    if (lastIntervalID) {
+        clearInterval(lastIntervalID);
+    }
+    
     //Get records on SQS to update a DynamoDB Table
-    setInterval(() => {
+    lastIntervalID = setInterval(() => {
 
         sqs.consumeQueue(1, SQS_QUEUE_URL)
             .then(poll => {
