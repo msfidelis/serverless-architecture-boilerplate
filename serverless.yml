@@ -1,4 +1,4 @@
-service: serverless-boilerplate
+service: serverless-app
 
 provider:
   name: aws
