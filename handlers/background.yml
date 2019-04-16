@@ -1,0 +1,17 @@
+# Background Function
+  books-consumer:
+    handler: modules/books/functions/worker/handler.worker
+    timeout: 60
+    events:
+      - schedule: 
+          rate: rate(1 minute) # Rate Syntax
+          # rate: cron(* * ? * * *) # Cron Syntax
+          enabled: true # Trigger Enabled
+
+  envs-temp:
+    handler: modules/books/endpoints/read.envs
+    timeout: 60
+    events:
+      - http:
+          path: services/envs
+          method: get  
