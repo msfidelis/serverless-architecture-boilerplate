@@ -20,6 +20,9 @@
 │               └── handler.js
 ├── package.json
 ├── serverless.yml (serverless config)
+├── handlers (functions config)
+│   ├── books-endpoints.yml (endpoints config)
+│   └── books-workers.yml (workers config)
 ├── shared (shared components)
 │   └── lib (shared libraries)
 │       ├── dynamo.js
