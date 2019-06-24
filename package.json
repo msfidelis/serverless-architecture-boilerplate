@@ -19,7 +19,8 @@
   "license": "MIT",
   "dependencies": {
     "bluebird": "^3.5.5",
-    "serverless-pseudo-parameters": "^1.6.0"
+    "serverless-pseudo-parameters": "^1.6.0",
+    "yamljs": "^0.3.0"
   },
   "devDependencies": {
     "aws-sdk": "^2.463.0",
