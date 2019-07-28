@@ -58,7 +58,10 @@ custom:
   serverless-offline:
     host: '0.0.0.0'
 
-  # Dev
+  splitStacks:
+    perFunction: true
+    perType: true
+
   serverless-offline-sqs-esmq:
     apiVersion: '2012-11-05'
     endpoint: http://sqs:9324
