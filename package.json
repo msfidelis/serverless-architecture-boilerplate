@@ -23,12 +23,13 @@
     "yamljs": "^0.3.0"
   },
   "devDependencies": {
-    "aws-sdk": "^2.463.0",
+    "aws-sdk": "^2.501.0",
     "chai": "^4.2.0",
     "mocha": "^5.2.0",
     "serverless-dynamodb-local": "^1.0.2",
     "serverless-offline": "^4.10.6",
-    "serverless-offline-scheduler": "^0.3.7",
+    "serverless-offline-scheduler": "^0.3.8",
+    "serverless-plugin-split-stacks": "^1.9.0",
     "serverless-offline-sqs-esmq": "^1.0.0"
   }
 }
