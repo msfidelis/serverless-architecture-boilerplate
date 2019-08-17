@@ -98,7 +98,7 @@ This boilerplate contains following plugins for local development:
 * [serverless-offline-scheduler](https://github.com/ajmath/serverless-offline-scheduler) - CloudWatch Schedule Adapter
 * [serverless-offline-sqs-esmq](https://github.com/msfidelis/serverless-offline-sqs-esmq) - SQS Adapter
 * [serverless-dynamodb-local](https://github.com/99xt/serverless-dynamodb-local/releases) - DynamoDB Adapter
-
+* [serverless-plugin-split-stacks](https://github.com/dougmoscrop/serverless-plugin-split-stacks) - Split Cloudformation Templates
 
 ## Production environment
 
