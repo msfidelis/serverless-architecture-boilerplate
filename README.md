@@ -3,6 +3,9 @@
 
 # Serverless Architecture Boilerplate [![serverless](http://public.serverless.com/badges/v3.svg)](http://www.serverless.com) [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT) [![Build Status](https://travis-ci.org/msfidelis/serverless-architecture-boilerplate.svg?branch=master)](https://travis-ci.org/msfidelis/serverless-architecture-boilerplate)
 
+## CI / CD Pipeline
+
+Need a Codepipeline Structure to deploy your Serverless Project with Quality? [See this repo](https://github.com/msfidelis/serverless-pipeline)!
 
 ## Structure 
 
@@ -95,7 +98,7 @@ This boilerplate contains following plugins for local development:
 * [serverless-offline-scheduler](https://github.com/ajmath/serverless-offline-scheduler) - CloudWatch Schedule Adapter
 * [serverless-offline-sqs-esmq](https://github.com/msfidelis/serverless-offline-sqs-esmq) - SQS Adapter
 * [serverless-dynamodb-local](https://github.com/99xt/serverless-dynamodb-local/releases) - DynamoDB Adapter
-
+* [serverless-plugin-split-stacks](https://github.com/dougmoscrop/serverless-plugin-split-stacks) - Split Cloudformation Templates
 
 ## Production environment
 
