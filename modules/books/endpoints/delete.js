@@ -1,6 +1,7 @@
 'use strict';
 
 const dynamo = require('../../../shared/lib/dynamo');
+const response = require('../../../shared/lib/response');
 
 const DYNAMO_TABLE_BOOKS = process.env.DYNAMO_TABLE_BOOKS || 'books';
 
@@ -11,17 +12,11 @@ module.exports.delete = (event, context, callback) => {
     dynamo.removeRow(key, DYNAMO_TABLE_BOOKS)
         .then(success => {
 
-            callback(null, {
-                statusCode: 204,
-                body: JSON.stringify(success)
-            });
+            response.json(callback, success, 204);
 
         }).catch(err => {
 
-            callback(err, {
-                statusCode: 500,
-                body: JSON.stringify(err)
-            });
+            response.json(callback, err, 500);
 
         });
 

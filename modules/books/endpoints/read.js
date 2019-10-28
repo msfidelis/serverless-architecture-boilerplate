@@ -1,7 +1,8 @@
 'use strict';
 
 const dynamo = require('../../../shared/lib/dynamo');
-const sqs    = require('../../../shared/lib/sqs');
+const sqs    = require('../../../shared/lib/sqs')
+const response = require('../../../shared/lib/response');
 
 const DYNAMO_TABLE_BOOKS = process.env.DYNAMO_TABLE_BOOKS || 'books';
 const SQS_QUEUE_URL = process.env.SQS_QUEUE_URL || 'book';
@@ -11,17 +12,12 @@ module.exports.list = (event, context, callback) => {
     dynamo.scan({}, null, DYNAMO_TABLE_BOOKS)
         .then(books => {
 
-            callback(null, {
-                statusCode: 200,
-                body: JSON.stringify(books.Items)
-            });
+            response.json(callback, books.Items);
 
         }).catch(err => {
 
-            callback(err, {
-                statusCode: 500,
-                body: JSON.stringify(err)
-            });
+            response.json(callback, err, 500);
+
         })
 
 };

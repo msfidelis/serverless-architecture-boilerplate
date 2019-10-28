@@ -2,6 +2,7 @@
 
 const uuid = require('../../../shared/lib/uuid');
 const dynamo = require('../../../shared/lib/dynamo');
+const response = require('../../../shared/lib/response');
 const sqs = require('../../../shared/lib/sqs');
 
 const DYNAMO_TABLE_BOOKS = process.env.DYNAMO_TABLE_BOOKS || 'books';
@@ -51,16 +52,10 @@ module.exports.create = (event, context, callback) => {
             sqs.sendToQueue({ hashkey: hashkey })
         ])
         .then(success => {
-            callback(null, {
-                statusCode: 201,
-                body: JSON.stringify(book)
-            });
+            response.json(callback, success, 201);
         })
         .catch(err => {
-            callback(err, {
-                statusCode: 500,
-                body: JSON.stringify(err)
-            });
+            response.json(callback, err, 500);
         });
 
 };
