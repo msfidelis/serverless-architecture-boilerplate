@@ -45,7 +45,7 @@ module.exports.worker = (event, context, callback) => {
 
         }).catch(err => console.log(err));
 
-    }, 100)
+    }, 100);
 
 };
 

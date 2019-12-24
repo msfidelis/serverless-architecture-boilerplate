@@ -73,6 +73,7 @@ custom:
     stages:
       - local
       - test
+      - dev
 
     start:
       host: "dynamo"

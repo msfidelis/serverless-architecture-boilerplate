@@ -43,6 +43,8 @@ module.exports.create = (event, context, callback) => {
         created: new Date().getTime()
     };
 
+    console.log(book);
+
     /**
      * Save item on DynamoDB and put hashkey on SQS Queue to be
      * updated by example Worker

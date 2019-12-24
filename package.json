@@ -4,6 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
+    "docker": "docker-compose up --force-recreate",
     "dev": "npm install; serverless offline start --stage local",
     "unit-test": "mocha --recursive test/unit/",
     "integration-test": "mocha --recursive test/integration/"
@@ -26,7 +27,7 @@
     "aws-sdk": "^2.596.0",
     "chai": "^4.2.0",
     "mocha": "^5.2.0",
-    "serverless-dynamodb-local": "^1.0.2",
+    "serverless-dynamodb-local": "0.2.38",
     "serverless-offline": "^4.10.6",
     "serverless-offline-scheduler": "^0.3.8",
     "serverless-offline-sqs-esmq": "^1.0.0",

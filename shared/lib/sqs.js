@@ -8,7 +8,7 @@ const endpoint = process.env.SQS_QUEUE_URL;
 const local = "http://sqs:9324";
 
 const dev = {
-    apiVersion: '2012-11-05', 
+    apiVersion: '2012-11-05',
     region: process.env.REGION || 'localhost',
     endpoint: local,
     sslEnabled: false,
@@ -40,7 +40,7 @@ const client = {
      */
     save: (message, queue=endpoint) => {
 
-        const url = rocess.env.IS_OFFLINE ? `${local}/queue/${queue}` : queue;
+        const url = process.env.IS_OFFLINE ? `${local}/queue/${queue}` : queue;
 
         const params = {
             QueueUrl: url,
@@ -67,12 +67,14 @@ const client = {
      * Get messages from Queue
      */
     consumeQueue: (numberOfMessages = 1, queue=endpoint) => {
-        
+
         const url = process.env.IS_OFFLINE ? `${local}/queue/${queue}` : queue;
         const params = {
             QueueUrl: url,
             MaxNumberOfMessages: numberOfMessages
         };
+
+        console.log(params);
 
         return _sqs.receiveMessage(params).promise();
     },
