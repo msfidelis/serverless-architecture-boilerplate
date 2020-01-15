@@ -30,7 +30,7 @@ provider:
       - dynamodb:PutItem
       - dynamodb:UpdateItem
       - dynamodb:DeleteItem
-    Resource: "arn:aws:dynamodb:us-east-1:*:*"
+    Resource: "arn:aws:dynamodb:*:*:*"
 
   - Effect: Allow
     Action: # Gives permission to Lambda execution
