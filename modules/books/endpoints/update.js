@@ -44,7 +44,7 @@ module.exports.update = (event, context, callback) => {
   if (data.price) {
     params.price = {
       Action: 'PUT',
-      Value: body.price
+      Value: data.price
     };
   }
 
