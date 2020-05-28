@@ -7,6 +7,9 @@
 
 Need a Codepipeline Structure to deploy your Serverless Project with Quality? [See this repo](https://github.com/msfidelis/serverless-pipeline)!
 
+### Serverless Archictecture Boilerplate with Go? 
+Looking for boilerplates to organize big projects using AWS Lambda with Go? [See this repo](https://github.com/msfidelis/serverless-architecture-boilerplate-go)
+
 ## Structure 
 
 ```
