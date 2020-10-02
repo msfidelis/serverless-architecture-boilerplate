@@ -1,0 +1,9 @@
+  # Config for Not Found Endpoints
+  notFound:
+    handler: modules/redirects.notFound
+    timeout: 30
+    events:
+      - http:
+          path: /{proxy+} # catch any path not specified elsewhere
+          method: any
+          corst: true
