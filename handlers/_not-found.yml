@@ -6,4 +6,4 @@
       - http:
           path: /{proxy+} # catch any path not specified elsewhere
           method: any
-          corst: true
+          cors: true
