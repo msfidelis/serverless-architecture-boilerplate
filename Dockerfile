@@ -1,4 +1,4 @@
-FROM node:8.10.0-alpine
+FROM node:12.19.0-alpine3.10
 
 RUN npm install -g serverless
 
